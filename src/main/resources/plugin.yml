@@ -1,0 +1,4 @@
+name: CustomLootTables
+version: ${project.version}
+main: io.ayushchivate.github.customloottables.CustomLootTablesPlugin
+api-version: 1.17
