@@ -7,47 +7,37 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.world.LootGenerateEvent;
+import org.bukkit.loot.LootContext;
 import org.bukkit.loot.LootTable;
-import org.bukkit.loot.LootTables;
+
+import java.util.Random;
 
 public class PlayerWatcher implements Listener {
 
 
-//    @EventHandler
-//    public void onInteract(PlayerInteractEvent event) {
-//
-//        Player player = event.getPlayer();
-//
-//        if (event.hasBlock()) {
-//            Block block = event.getClickedBlock();
-//
-//            if (block.getType() == Material.CHEST) {
-//                Chest chest = (Chest) block.getState();
-//
-//                LootTable lootTable = chest.getLootTable();
-//
-//                if (lootTable == null) {
-//                    return;
-//                }
-//
-//                System.out.println("loot table key: " + lootTable.getKey());
-//
-//                chest.setLootTable(null);
-//
-//            }
-//        }
-//    }
-
     @EventHandler
-    public void onLootGeneration(LootGenerateEvent e) {
+    public void onInteract(PlayerInteractEvent event) {
 
-        LootTable lootTable = e.getLootTable();
+        Player player = event.getPlayer();
 
-        System.out.printf("LootTable: %s", lootTable);
+        if (event.hasBlock()) {
+            Block block = event.getClickedBlock();
 
-        if (lootTable.getKey().equals(LootTables.EMPTY.getKey())) {
-            return;
+            if (block.getType() == Material.CHEST) {
+                Chest chest = (Chest) block.getState();
+
+                LootTable lootTable = chest.getLootTable();
+
+                if (lootTable == null) {
+                    return;
+                }
+
+                CustomLootTable customLootTable = new CustomLootTable();
+                customLootTable.fillInventory(chest.getBlockInventory(), new Random(), new LootContext.Builder(chest.getLocation()).build());
+
+                chest.setLootTable(null);
+
+            }
         }
     }
 }

@@ -5,7 +5,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.loot.LootContext;
 import org.bukkit.loot.LootTable;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,7 +17,14 @@ public class CustomLootTable implements LootTable {
     @Override
     public Collection<ItemStack> populateLoot(Random random, LootContext context) {
 
-        Collection<ItemStack> itemStacks = new ArrayList<>();
+        return new ArrayList<>();
+    }
+
+    @Override
+    public void fillInventory(Inventory inventory, Random random, LootContext context) {
+
+        inventory.clear();
+
         LootTableConfig lootTableConfig = new LootTableConfig();
 
         List<TableItem> tableItems = lootTableConfig.getTableItems();
@@ -31,20 +37,28 @@ public class CustomLootTable implements LootTable {
             int threshold = tableItem.getSpawnProbability();
 
             if (randomNumber <= threshold) {
-                itemStacks.add(tableItem.getItemStack());
+
+                int minimumQuantity = tableItem.getMinimumQuantity();
+                int maximumQuantity = tableItem.getMaximumQuantity();
+                ItemStack itemStack = tableItem.getItemStack();
+
+                int randomQuantity = rand(minimumQuantity, maximumQuantity); // inclusive
+                itemStack.setAmount(randomQuantity);
+                int randomSlot = rand(0, 27);
+                inventory.setItem(randomSlot, tableItem.getItemStack());
             }
         }
-
-        return itemStacks;
-    }
-
-    @Override
-    public void fillInventory(Inventory inventory, Random random, LootContext context) {
-
     }
 
     @Override
     public NamespacedKey getKey() {
         return NamespacedKey.minecraft("custom-loot-table");
+    }
+
+    private int rand(int low, int high) {
+        high++;
+        Random r = new Random();
+
+        return r.nextInt(high - low) + low;
     }
 }

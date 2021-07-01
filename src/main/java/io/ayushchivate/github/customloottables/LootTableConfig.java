@@ -4,12 +4,9 @@ import net.dohaw.corelib.Config;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class LootTableConfig extends Config {
 
@@ -19,7 +16,7 @@ public class LootTableConfig extends Config {
 
     public List<TableItem> getTableItems() {
 
-        ConfigurationSection sectionOne = config.getConfigurationSection("Custom Loot Tables");
+        ConfigurationSection sectionOne = config.getConfigurationSection("Custom Loot Table");
         List<TableItem> tableItems = new ArrayList<>();
 
         if (sectionOne == null) {
@@ -31,16 +28,17 @@ public class LootTableConfig extends Config {
         for (String sectionTwoName : sectionOne.getKeys(false)) {
 
             TableItem tableItem = new TableItem();
-            ConfigurationSection sectionTwo = config.getConfigurationSection(sectionTwoName);
+            ConfigurationSection sectionTwo = sectionOne.getConfigurationSection(sectionTwoName);
 
             if (sectionTwo != null) {
 
                 Material material = Material.valueOf(sectionTwo.getString("Material", "APPLE"));
                 int minimumQuantity = sectionTwo.getInt("Minimum Quantity", 1);
+                tableItem.setMinimumQuantity(minimumQuantity);
                 int maximumQuantity = sectionTwo.getInt("Maximum Quantity", 64);
-                int randomQuantity = rand(minimumQuantity, maximumQuantity); // inclusive
+                tableItem.setMaximumQuantity(maximumQuantity);
 
-                ItemStack itemStack = new ItemStack(material, randomQuantity);
+                ItemStack itemStack = new ItemStack(material);
                 tableItem.setItemStack(itemStack);
 
                 int spawnProbability = sectionTwo.getInt("Spawn Probability", 100);
@@ -52,12 +50,5 @@ public class LootTableConfig extends Config {
         }
 
         return tableItems;
-    }
-
-    private int rand(int low, int high) {
-        high++;
-        Random r = new Random();
-
-        return r.nextInt(high - low) + low;
     }
 }

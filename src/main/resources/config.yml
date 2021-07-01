@@ -1,11 +1,16 @@
 Custom Loot Table:
   Diamond 1:
-    Material: Diamond
-    Spawn Probability: # 1 - 100
-    Minimum Amount: 1 # greater than 0
-    Maximum Amount: 27 # max 64
+    Material: DIAMOND
+    Spawn Probability: 20 # 1 - 100
+    Minimum Quantity: 1 # 0 - 64
+    Maximum Quantity: 27 # 0 - 64
   Diamond 2:
-    Material: Diamond
-    Spawn Probability: # 1 - 100
-    Minimum Quantity: 1 # greater than 0
-    Maximum Quantity: 27 # max 64
+    Material: DIAMOND
+    Spawn Probability: 45 # 1 - 100
+    Minimum Quantity: 1 # 0 - 64
+    Maximum Quantity: 64 # 0 - 64
+  Obsidian:
+    Material: OBSIDIAN
+    Spawn Probability: 90 # 1 - 100
+    Minimum Quantity: 1 # 0 - 64
+    Maximum Quantity: 5 # 0 - 64
