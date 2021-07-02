@@ -15,12 +15,12 @@ public class ReloadCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        if (!sender.hasPermission("clt.reload")) {
-            sender.sendMessage("You do not have permissions to use this command!");
-            return false;
-        }
-
         if (args.length > 0 && args[0].equals("reload")) {
+
+            if (!sender.hasPermission("clt.reload")) {
+                sender.sendMessage("You do not have permissions to use this command!");
+                return false;
+            }
 
             this.plugin.reloadConfig();
             sender.sendMessage("The plugin has been reloaded.");
