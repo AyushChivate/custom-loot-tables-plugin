@@ -11,10 +11,10 @@ public final class CustomLootTablesPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         CoreLib.setInstance(this);
+        JPUtils.validateFiles("config.yml");
         this.lootTableConfig = new LootTableConfig();
         JPUtils.registerEvents(new PlayerWatcher(this.lootTableConfig));
         JPUtils.registerCommand("customlootables", new ReloadCommand(this));
-        JPUtils.validateFiles("config.yml");
     }
 
     @Override

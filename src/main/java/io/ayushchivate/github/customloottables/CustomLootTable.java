@@ -21,7 +21,6 @@ public class CustomLootTable implements LootTable {
 
     @Override
     public Collection<ItemStack> populateLoot(Random random, LootContext context) {
-
         return new ArrayList<>();
     }
 
