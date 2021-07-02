@@ -14,6 +14,11 @@ import java.util.Random;
 
 public class PlayerWatcher implements Listener {
 
+    LootTableConfig lootTableConfig;
+
+    public PlayerWatcher(LootTableConfig lootTableConfig) {
+        this.lootTableConfig = lootTableConfig;
+    }
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
@@ -32,8 +37,9 @@ public class PlayerWatcher implements Listener {
                     return;
                 }
 
-                CustomLootTable customLootTable = new CustomLootTable();
-                customLootTable.fillInventory(chest.getBlockInventory(), new Random(), new LootContext.Builder(chest.getLocation()).build());
+                CustomLootTable customLootTable = new CustomLootTable(this.lootTableConfig);
+                customLootTable.fillInventory(chest.getBlockInventory(), new Random(),
+                        new LootContext.Builder(chest.getLocation()).build());
 
                 chest.setLootTable(null);
 

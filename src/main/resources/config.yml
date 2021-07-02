@@ -1,16 +1,40 @@
+# Link to material names: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
+# Link to enchantment names: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/enchantments/Enchantment.html
+
 Custom Loot Table:
   Diamond 1:
     Material: DIAMOND
-    Spawn Probability: 20 # 1 - 100
-    Minimum Quantity: 1 # 0 - 64
-    Maximum Quantity: 27 # 0 - 64
+    Spawn Probability: 20         # 1 - 100
+    Minimum Quantity: 1           # 0 - 64
+    Maximum Quantity: 27          # 0 - 64
+    Display Name: DIAMOND
+    Lore:
+      - Line 1 of lore
+      - --------------
+      - Line 2 of lore
+    Enchantments:
+      - SHARPNESS 1
+      - UNBREAKING 3
+      - DAMAGE_ARTHROPODS 4
+
   Diamond 2:
     Material: DIAMOND
-    Spawn Probability: 45 # 1 - 100
-    Minimum Quantity: 1 # 0 - 64
-    Maximum Quantity: 64 # 0 - 64
+    Spawn Probability: 45         # 1 - 100
+    Minimum Quantity: 1           # 0 - 64
+    Maximum Quantity: 64          # 0 - 64
+    Display Name:                 # leave blank if you don't want to specify the display name
+    Lore:                         # Leave blank if you don't want to specify the lore
+    Enchantments:                 # Leave blank if you don't want to specify the enchantments
+
   Obsidian:
-    Material: OBSIDIAN
-    Spawn Probability: 90 # 1 - 100
-    Minimum Quantity: 1 # 0 - 64
-    Maximum Quantity: 5 # 0 - 64
+    Material: IRON_PICKAXE
+    Spawn Probability: 90         # 1 - 100
+    Minimum Quantity: 1           # 0 - 64
+    Maximum Quantity: 5           # 0 - 64
+    Display Name: Pickaxe of Awesomness
+    Lore:
+      - This is obsidian
+      - ----------------------
+      - it is black and purple
+    Enchantments:
+      - SILK_TOUCH

@@ -2,3 +2,9 @@ name: CustomLootTables
 version: ${project.version}
 main: io.ayushchivate.github.customloottables.CustomLootTablesPlugin
 api-version: 1.17
+
+commands:
+  customlootables:
+    description: reloads the plugin
+    aliases:
+      - clt
