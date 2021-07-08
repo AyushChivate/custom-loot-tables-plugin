@@ -8,3 +8,7 @@ commands:
     description: reloads the plugin
     aliases:
       - clt
+
+permissions:
+  customloottables.reload:
+    default: op

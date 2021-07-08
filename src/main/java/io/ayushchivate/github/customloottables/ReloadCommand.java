@@ -17,7 +17,7 @@ public class ReloadCommand implements CommandExecutor {
 
         if (args.length > 0 && args[0].equals("reload")) {
 
-            if (!sender.hasPermission("clt.reload")) {
+            if (!sender.hasPermission("customloottables.reload")) {
                 sender.sendMessage("You do not have permissions to use this command!");
                 return false;
             }
@@ -29,4 +29,5 @@ public class ReloadCommand implements CommandExecutor {
 
         return false;
     }
+
 }
